@@ -102,14 +102,27 @@
 
   /* ---------- HERO (charcoal / logo world) ---------- */
   .hero{
-    background:
-      radial-gradient(ellipse 900px 650px at 50% 38%, rgba(63,121,184,.16), transparent 65%),
-      radial-gradient(ellipse 1400px 900px at 50% 0%, #1a1c1f, var(--charcoal) 60%);
+    position:relative;
+    background: var(--charcoal);
     padding: 76px 24px 64px;
     text-align:center;
     overflow:hidden;
   }
-  .hero-inner{ max-width:760px; margin:0 auto; }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:url('images/backdrop.jpg') center 62% / cover no-repeat;
+    opacity:.32;
+    mix-blend-mode:screen;
+  }
+  .hero::after{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 900px 650px at 50% 38%, rgba(63,121,184,.18), transparent 65%),
+      radial-gradient(ellipse 1400px 950px at 50% 0%, rgba(20,21,23,.55) 0%, var(--charcoal) 68%);
+  }
+  .hero-inner{ position:relative; z-index:2; max-width:760px; margin:0 auto; }
   .hero-badge-wrap{
     position:relative; width:230px; height:230px; margin:0 auto 28px;
   }
@@ -228,10 +241,10 @@
 
   /* ---------- GALLERY ---------- */
   .gallery{ background:var(--pine-3); padding:80px 24px 96px; }
-  .frames{ display:grid; grid-template-columns:1.5fr 1fr; grid-template-rows:auto auto; gap:14px; max-width:1000px; margin:0 auto; }
-  .frame{ position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(154,163,171,.2); }
-  .frame:nth-child(1){ grid-row:1 / 3; }
-  .frame img{ width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.05); }
+  .frames{ display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:1000px; margin:0 auto; }
+  .frame{ position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(154,163,171,.2); aspect-ratio:3/2; }
+  .frame img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
+  .frame:hover img{ transform:scale(1.04); }
   .frame-label{
     position:absolute; bottom:0; left:0; right:0;
     background:linear-gradient(0deg, rgba(11,11,12,.88), transparent);
@@ -277,8 +290,7 @@
     .intro-icon{ margin:0 auto; }
     .price-grid{ grid-template-columns:1fr; }
     .why-grid{ grid-template-columns:1fr 1fr; }
-    .frames{ grid-template-columns:1fr; grid-template-rows:auto; }
-    .frame:nth-child(1){ grid-row:auto; }
+    .frames{ grid-template-columns:1fr; }
     .footer-inner{ flex-direction:column; }
   }
   @media (max-width:480px){
@@ -291,7 +303,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <div class="brand">
-      <img src="images/logo-raw.png" alt="Lone Star Pole Supply Co. logo">
+      <img src="images/logo.png" alt="Lone Star Pole Supply Co. logo">
       <div class="brand-text">Lone Star Pole Supply<span>Texas Utility Poles</span></div>
     </div>
     <div class="nav-links">
@@ -308,7 +320,7 @@
   <div class="hero-inner">
     <div class="hero-badge-wrap">
       <div class="hero-badge-glow"></div>
-      <img class="hero-badge" src="images/logo-raw.png" alt="Lone Star Pole Supply Co. badge logo — star with crossed timber poles">
+      <img class="hero-badge" src="images/logo.png" alt="Lone Star Pole Supply Co. badge logo — star with crossed timber poles">
     </div>
     <span class="eyebrow">Texas Utility Pole Supply</span>
     <h1>Strong. Reliable.<br>Built to Last.</h1>
@@ -451,20 +463,20 @@
   </div>
   <div class="frames">
     <div class="frame">
-      <img src="images/main.png" alt="Stacked treated utility poles at the yard, various lengths">
-      <div class="frame-label"><span class="num">FRAME 01</span><span class="cap">Fresh cut poles, stacked and ready</span></div>
+      <img src="images/yard-1.jpg" alt="Treated utility poles stacked in the yard under a blue sky">
+      <div class="frame-label"><span class="num">FRAME 01</span><span class="cap">Fresh stock, ready to move</span></div>
     </div>
     <div class="frame">
-      <img src="images/c1.png" alt="Utility poles loaded for delivery">
-      <div class="frame-label"><span class="num">FRAME 02</span><span class="cap">Loaded and staged for delivery</span></div>
+      <img src="images/yard-2.jpg" alt="Close-up of stacked utility pole ends, each logged and tagged">
+      <div class="frame-label"><span class="num">FRAME 02</span><span class="cap">Every pole logged and tagged</span></div>
     </div>
     <div class="frame">
-      <img src="images/c2.png" alt="Treated poles of various lengths in stock">
-      <div class="frame-label"><span class="num">FRAME 03</span><span class="cap">Treated stock, various lengths</span></div>
+      <img src="images/truck.jpg" alt="Flatbed truck loaded with utility poles ready for delivery">
+      <div class="frame-label"><span class="num">FRAME 03</span><span class="cap">Loaded and headed out</span></div>
     </div>
     <div class="frame">
-      <img src="images/c3.png" alt="The yard with an American flag flying">
-      <div class="frame-label"><span class="num">FRAME 04</span><span class="cap">The yard, flying the flag</span></div>
+      <img src="images/crew.jpg" alt="Crew staging a utility pole with a crane truck, American flag flying">
+      <div class="frame-label"><span class="num">FRAME 04</span><span class="cap">On site, flag flying</span></div>
     </div>
   </div>
 </section>
@@ -479,7 +491,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="images/logo-raw.png" alt="Lone Star Pole Supply Co. logo">
+      <img src="images/logo.png" alt="Lone Star Pole Supply Co. logo">
       <div class="footer-brand-text">Lone Star Pole Supply Co.</div>
     </div>
     <div class="footer-links">
